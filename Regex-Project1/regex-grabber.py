@@ -7,14 +7,32 @@ phoneRegex = re.compile(r'''(
     (\d{3}|\(\d{3}\))?               #codigo de area
     (\s|-|\.)?                       #separador
     (\d{3})                          # primeiros 3 digitos
-    (\s|-|\.)?                       #separador
+    (\s|-|\.)                        #separador
     (\d{4})                          #últimos 4 digitos)
-    (\s*(ext|x|ext.)\s*(\d{2,5}))?   #extensão
+    (\s*(ext|x|ext.)\s*(\d{2,5}))?   #extensão   
+    )''', re.VERBOSE)
 
-)''', re.VERBOSE)
+emailRegex = re.compile(r'''(
+    [a-zA-Z0-9._%+-]+       #nome do usuario  
+    @                       #simbolo @
+    [a-zA-Z0-9.-]+          #nome do domínio 
+    (\.[a-zA-Z]{2,4})       #ponto seguido de outros caracteres 
+    )''', re.VERBOSE)
 
-# TODO : Cria regex para pegar o e-mail
+text = str(pyperclip.paste())
 
-# TODO: Encontra correspondências no texto do clipboard
+matches = []
+for groups in phoneRegex.findall(text):
+    phoneNum = '-'.join([groups[1], groups[3], groups[5]])
+    if groups[8] != '':
+        phoneNum += ' x' + groups[8]
+    matches.append(phoneNum)
+for groups in emailRegex.findall(text):
+    matches.append(groups[0])
 
-# TODO: Copia os resultados para o clipboard
+if len(matches) > 0:
+    pyperclip.copy('\n'.join(matches))
+    print('Copied to clipboard:')
+    print('\n'.join(matches))
+else:
+        print('Nenhum telefone ou e-mail encontrado')
