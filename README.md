@@ -1,2 +1,3 @@
-# Estudando um pouco de python e automatizando algumas tarefas  
-A princípio vou seguir alguns livros e bootcamp de python.
+# Estudando um pouco de python. 
+
+Seguindo algumas idéias dos livros e experimentando com algumas libs de python, testando o uso do github e do processo de dev. Sou noob.
