@@ -1,5 +1,5 @@
-## H2
-O que isso faz?
+## O que isso faz?
+
 - Usa o módulo pyperclip para copiar e colar strings
 - Cria duas regexes: uma para pegar números de telefone e outra para endereços de e-mail
 - Encontrar todas as correspondências, e não apenas a primeira.
